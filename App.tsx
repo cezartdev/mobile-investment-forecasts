@@ -6,7 +6,7 @@ import HomeScreen from './src/pages/HomeScreen';
 import DetailsScreen from './src/pages/DetailsScreen';
 import BottomTabNavigator from './src/components/BottomTabNavigator';
 
-const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (
