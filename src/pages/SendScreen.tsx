@@ -6,6 +6,12 @@ const SendScreen = () => {
   return (
     <View>
       <Text>Send Screen</Text>
+      <Text>Send Screen</Text>
+      <Text>Send Screen</Text>
+      <Text>Send Screen</Text>
+      <Text>Send Screen</Text>
+      <Text>Send Screen</Text>
+      <Text>Send Screen</Text>
     </View>
   );
 };

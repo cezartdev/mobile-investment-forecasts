@@ -1,3 +1,4 @@
+// BottomTabNavigator.tsx
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,8 +13,16 @@ const BottomTabNavigator = () => {
         <NavigationContainer>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
-                    tabBarStyle: { backgroundColor: '#4a6ef1' },
-                    tabBarActiveTintColor: '#ffbc00',
+                    tabBarStyle: {
+                        backgroundColor: '#3c3d3d',
+                        borderRadius: 14,
+                        margin: 20,
+                        alignSelf: 'center',  // Usar alignSelf para centrar el tabBar
+                        height: 60,
+                        position: 'absolute',
+                        borderWidth: 0,
+                    },
+                    tabBarActiveTintColor: '#8AFF30',
                     tabBarInactiveTintColor: 'white',
                     tabBarLabelStyle: { fontSize: 14 },
                     headerShown: false,

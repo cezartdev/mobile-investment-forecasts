@@ -1,15 +1,15 @@
 // HomeScreen.tsx
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, Text, Button } from 'react-native';
+import { ScrollView, Text, Button, Image } from 'react-native';
 
 const Container = styled.View`
   flex: 1;
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; /* Fondo gris claro */
 `;
 
 const Header = styled.View`
-  background-color: #4a6ef1;
+  background-color: #3c3d3d;
   padding: 20px;
   align-items: center;
 `;
@@ -76,48 +76,75 @@ const OptionButtonText = styled.Text`
   color: white;
 `;
 
+const MyContainer = styled.View`
+  border-radius: 20px;
+  background-color: white;
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const MyText = styled.Text`
+  margin-top: 10px;
+`;
+
+const MyImage = styled.Image`
+  width: 250px;
+  height: 200px;
+`;
+
 const HomeScreen = () => {
-    return (
-        <Container>
-            <Header>
-                <BalanceContainer>
-                    <BalanceText>US Dollar</BalanceText>
-                    <BalanceText>$20,000</BalanceText>
-                    <AddMoneyButton title="Add Money" onPress={() => { }} />
-                </BalanceContainer>
-            </Header>
-            <TransactionsContainer>
-                <TransactionHeader>Transaction</TransactionHeader>
-                <TransactionItem>
-                    <TransactionText>Spending</TransactionText>
-                    <TransactionAmount positive={false}>-$500</TransactionAmount>
-                </TransactionItem>
-                <TransactionItem>
-                    <TransactionText>Income</TransactionText>
-                    <TransactionAmount positive={true}>$3000</TransactionAmount>
-                </TransactionItem>
-                <TransactionItem>
-                    <TransactionText>Bills</TransactionText>
-                    <TransactionAmount positive={false}>-$800</TransactionAmount>
-                </TransactionItem>
-                <TransactionItem>
-                    <TransactionText>Savings</TransactionText>
-                    <TransactionAmount positive={true}>$1000</TransactionAmount>
-                </TransactionItem>
-            </TransactionsContainer>
-            <ButtonContainer>
-                <OptionButton>
-                    <OptionButtonText>Send</OptionButtonText>
-                </OptionButton>
-                <OptionButton>
-                    <OptionButtonText>Request</OptionButtonText>
-                </OptionButton>
-                <OptionButton>
-                    <OptionButtonText>Bank</OptionButtonText>
-                </OptionButton>
-            </ButtonContainer>
-        </Container>
-    );
+  return (
+    <ScrollView>
+      <Container>
+        <Header>
+          <BalanceContainer>
+            <BalanceText>Investment Forecast</BalanceText>
+            <AddMoneyButton title="Add Money" onPress={() => {}} />
+          </BalanceContainer>
+        </Header>
+        <TransactionsContainer>
+          <TransactionHeader>Transaction</TransactionHeader>
+          <TransactionItem>
+            <TransactionText>Spending</TransactionText>
+            <TransactionAmount positive={false}>-$500</TransactionAmount>
+          </TransactionItem>
+          <TransactionItem>
+            <TransactionText>Income</TransactionText>
+            <TransactionAmount positive={true}>$3000</TransactionAmount>
+          </TransactionItem>
+          <TransactionItem>
+            <TransactionText>Bills</TransactionText>
+            <TransactionAmount positive={false}>-$800</TransactionAmount>
+          </TransactionItem>
+          <TransactionItem>
+            <TransactionText>Savings</TransactionText>
+            <TransactionAmount positive={true}>$1000</TransactionAmount>
+          </TransactionItem>
+        </TransactionsContainer>
+        <MyContainer>
+          <MyImage source={require('../../assets/investment.png')} />
+          <MyText>
+            Description: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro ipsa voluptatum, a sed, corrupti omnis error, blanditiis quas quo dolor debitis maiores libero inventore numquam rerum expedita praesentium. Similique, provident.
+          </MyText>
+        </MyContainer>
+        <ButtonContainer>
+          <OptionButton>
+            <OptionButtonText>Send</OptionButtonText>
+          </OptionButton>
+          <OptionButton>
+            <OptionButtonText>Request</OptionButtonText>
+          </OptionButton>
+          <OptionButton>
+            <OptionButtonText>Bank</OptionButtonText>
+          </OptionButton>
+        </ButtonContainer>
+      </Container>
+    </ScrollView>
+  );
 };
 
 export default HomeScreen;
