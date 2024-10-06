@@ -1,30 +1,31 @@
 // BottomTabNavigator.tsx
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../pages/HomeScreen';
 import SendScreen from '../pages/SendScreen';
 import { Icon } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
     return (
-        <NavigationContainer>
+        <View style={styles.container}>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
                     tabBarStyle: {
                         backgroundColor: '#3c3d3d',
                         borderRadius: 14,
-                        margin: 20,
-                        alignSelf: 'center',  // Usar alignSelf para centrar el tabBar
+                        marginHorizontal: 20,
+                        alignSelf: 'center',
                         height: 60,
                         position: 'absolute',
+                        bottom: 20, // Fija el tabBar en la parte inferior con un margen
                         borderWidth: 0,
                     },
                     tabBarActiveTintColor: '#8AFF30',
                     tabBarInactiveTintColor: 'white',
-                    tabBarLabelStyle: { fontSize: 14 },
+                    tabBarLabelStyle: { fontSize: 14, marginBottom: 5 },
                     headerShown: false,
                     tabBarIcon: ({ color }) => {
                         let iconName;
@@ -55,8 +56,18 @@ const BottomTabNavigator = () => {
                     options={{ tabBarLabel: 'Send' }}
                 />
             </Tab.Navigator>
-        </NavigationContainer>
+        </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    contentContainer: {
+        flex: 1,
+        paddingBottom: 80, // Espacio adicional para evitar que el contenido quede oculto debajo del TabBar
+    },
+});
 
 export default BottomTabNavigator;

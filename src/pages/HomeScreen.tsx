@@ -1,7 +1,7 @@
 // HomeScreen.tsx
 import React from 'react';
 import styled from 'styled-components/native';
-import { ScrollView, Text, Button, Image } from 'react-native';
+import { ScrollView, Text, Button, Image, StyleSheet } from 'react-native';
 
 const Container = styled.View`
   flex: 1;
@@ -98,7 +98,7 @@ const MyImage = styled.Image`
 
 const HomeScreen = () => {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       <Container>
         <Header>
           <BalanceContainer>
@@ -147,4 +147,10 @@ const HomeScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+    container: {
+        flexGrow: 1,
+        paddingBottom: 80, // Asegura que el contenido no quede oculto debajo del TabNavigator
+    },
+});
 export default HomeScreen;
