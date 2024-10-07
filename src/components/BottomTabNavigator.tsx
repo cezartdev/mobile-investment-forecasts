@@ -5,6 +5,7 @@ import SendScreen from '../pages/SendScreen';
 import { Icon } from 'react-native-elements';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors, shapes } from "../utils/theme";
+import { ScreenWidth } from 'react-native-elements/dist/helpers';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,7 @@ const BottomTabNavigator = () => {
                     tabBarStyle: {
                         backgroundColor: colors.backgroundAltDark,
                         borderRadius: shapes.buttonRadius,
-                        marginHorizontal: 20,
+                        width: "90%",
                         alignSelf: 'center',
                         height: 60,
                         position: 'absolute',
@@ -31,7 +32,7 @@ const BottomTabNavigator = () => {
                     tabBarButton: (props) => {
                         const { onPress, accessibilityState } = props;
                         const focused = accessibilityState?.selected;
-                        
+
                         // Decide icon based on route
                         let iconName: string = 'home'; // Valor por defecto
                         if (route.name === 'Home') {
