@@ -6,7 +6,7 @@ import HomeScreen from './src/pages/HomeScreen';
 import DetailsScreen from './src/pages/DetailsScreen';
 import BottomTabNavigator from './src/components/BottomTabNavigator';
 import { ThemeProvider } from 'styled-components/native';
-import { colors } from './src/utils/colors'; // importa tu archivo de tema
+import { colors } from './src/utils/theme'; // importa tu archivo de tema
 
 export default function App() {
     return (

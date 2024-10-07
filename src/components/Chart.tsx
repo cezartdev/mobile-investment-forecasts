@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
+import { colors, shapes } from "../utils/theme"
 
 const MyLineChart = () => {
     const data = {
@@ -21,14 +22,14 @@ const MyLineChart = () => {
                 height={220}
                 yAxisLabel="$"
                 chartConfig={{
-                    backgroundColor: '#009BFF',
-                    backgroundGradientFrom: '#ffffff',
-                    backgroundGradientTo: '#f1f1f1',
+                    backgroundColor: "#ffffff",
+                    backgroundGradientFrom: colors.primaryDark,
+                    backgroundGradientTo: colors.primaryDark,
                     decimalPlaces: 2, // Opcional
-                    color: (opacity = 1) => `rgba(0, 155, 255, ${opacity})`,
-                    labelColor: (opacity = 1) => `rgba(0, 155, 255, ${opacity})`,
+                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                     style: {
-                        borderRadius: 16,
+                        borderRadius: shapes.cardRadius,
                     },
                     propsForDots: {
                         r: '6',
@@ -38,7 +39,7 @@ const MyLineChart = () => {
                 }}
                 style={{
                     marginVertical: 8,
-                    borderRadius: 16,
+                    borderRadius: shapes.cardRadius,
                 }}
             />
         </View>
