@@ -1,8 +1,8 @@
 // HomeScreen.tsx
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { ScrollView, Text, Button, Image, StyleSheet } from 'react-native';
-
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 const Container = styled.View`
   flex: 1;
   background-color: #f5f5f5; /* Fondo gris claro */
@@ -97,54 +97,70 @@ const MyImage = styled.Image`
 `;
 
 const HomeScreen = () => {
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Container>
-        <Header>
-          <BalanceContainer>
-            <BalanceText>Investment Forecast</BalanceText>
-            <AddMoneyButton title="Add Money" onPress={() => {}} />
-          </BalanceContainer>
-        </Header>
-        <TransactionsContainer>
-          <TransactionHeader>Transaction</TransactionHeader>
-          <TransactionItem>
-            <TransactionText>Spending</TransactionText>
-            <TransactionAmount positive={false}>-$500</TransactionAmount>
-          </TransactionItem>
-          <TransactionItem>
-            <TransactionText>Income</TransactionText>
-            <TransactionAmount positive={true}>$3000</TransactionAmount>
-          </TransactionItem>
-          <TransactionItem>
-            <TransactionText>Bills</TransactionText>
-            <TransactionAmount positive={false}>-$800</TransactionAmount>
-          </TransactionItem>
-          <TransactionItem>
-            <TransactionText>Savings</TransactionText>
-            <TransactionAmount positive={true}>$1000</TransactionAmount>
-          </TransactionItem>
-        </TransactionsContainer>
-        <MyContainer>
-          <MyImage source={require('../../assets/investment.png')} />
-          <MyText>
-            Description: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro ipsa voluptatum, a sed, corrupti omnis error, blanditiis quas quo dolor debitis maiores libero inventore numquam rerum expedita praesentium. Similique, provident.
-          </MyText>
-        </MyContainer>
-        <ButtonContainer>
-          <OptionButton>
-            <OptionButtonText>Send</OptionButtonText>
-          </OptionButton>
-          <OptionButton>
-            <OptionButtonText>Request</OptionButtonText>
-          </OptionButton>
-          <OptionButton>
-            <OptionButtonText>Bank</OptionButtonText>
-          </OptionButton>
-        </ButtonContainer>
-      </Container>
-    </ScrollView>
-  );
+    const translateX = useSharedValue(0); // Valor compartido
+
+    // Define el estilo animado
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ translateX: translateX.value }],
+        };
+    });
+
+    const startAnimation = () => {
+        translateX.value = withTiming(100, { duration: 500 }); // Mueve a la posición 100
+    };
+    return (
+        <ScrollView contentContainerStyle={styles.container}>
+            <Container>
+                <Header>
+                    <BalanceContainer>
+                        <BalanceText>Investment Forecast</BalanceText>
+                        <AddMoneyButton title="Add Money" onPress={() => { }} />
+                    </BalanceContainer>
+                </Header>
+                <TransactionsContainer>
+                    <TransactionHeader>Transaction</TransactionHeader>
+                    <TransactionItem>
+                        <TransactionText>Spending</TransactionText>
+                        <TransactionAmount positive={false}>-$500</TransactionAmount>
+                    </TransactionItem>
+                    <TransactionItem>
+                        <TransactionText>Income</TransactionText>
+                        <TransactionAmount positive={true}>$3000</TransactionAmount>
+                    </TransactionItem>
+                    <TransactionItem>
+                        <TransactionText>Bills</TransactionText>
+                        <TransactionAmount positive={false}>-$800</TransactionAmount>
+                    </TransactionItem>
+                    <TransactionItem>
+                        <TransactionText>Savings</TransactionText>
+                        <TransactionAmount positive={true}>$1000</TransactionAmount>
+                    </TransactionItem>
+                </TransactionsContainer>
+
+                <Animated.View style={animatedStyle}>
+                    <MyContainer>
+                        <MyImage source={require('../../assets/investment.png')} />
+                        <MyText>
+                            Description: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro ipsa voluptatum, a sed, corrupti omnis error, blanditiis quas quo dolor debitis maiores libero inventore numquam rerum expedita praesentium. Similique, provident.
+                        </MyText>
+                    </MyContainer>
+                </Animated.View>
+
+                <ButtonContainer>
+                    <OptionButton>
+                        <OptionButtonText>Send</OptionButtonText>
+                    </OptionButton>
+                    <OptionButton>
+                        <OptionButtonText>Request</OptionButtonText>
+                    </OptionButton>
+                    <OptionButton>
+                        <OptionButtonText>Bank</OptionButtonText>
+                    </OptionButton>
+                </ButtonContainer>
+            </Container>
+        </ScrollView>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -153,4 +169,5 @@ const styles = StyleSheet.create({
         paddingBottom: 80, // Asegura que el contenido no quede oculto debajo del TabNavigator
     },
 });
+
 export default HomeScreen;
