@@ -3,9 +3,12 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { ScrollView, Text, Button, Image, StyleSheet } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import axios from 'axios';
+import Chart from "../components/Chart"
+import { colors } from "../utils/colors"
 const Container = styled.View`
   flex: 1;
-  background-color: #f5f5f5; /* Fondo gris claro */
+  background-color: ${({ theme }) => theme.colors.backgroundLight}; /* Fondo gris claro */
 `;
 
 const Header = styled.View`
@@ -109,6 +112,20 @@ const HomeScreen = () => {
     const startAnimation = () => {
         translateX.value = withTiming(100, { duration: 500 }); // Mueve a la posición 100
     };
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //       try {
+    //         const response = await axios.get('https://backendcitecubb.onrender.com/api/user/get-all');
+    //         console.log(response.data)
+    //       } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //       } finally {
+
+    //       }
+    //     };
+
+    //     fetchData();
+    //   }, []);
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Container>
@@ -147,6 +164,8 @@ const HomeScreen = () => {
                     </MyContainer>
                 </Animated.View>
 
+                <Chart />
+
                 <ButtonContainer>
                     <OptionButton>
                         <OptionButtonText>Send</OptionButtonText>
@@ -167,6 +186,7 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         paddingBottom: 80, // Asegura que el contenido no quede oculto debajo del TabNavigator
+        backgroundColor: colors.backgroundLight,
     },
 });
 

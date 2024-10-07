@@ -5,14 +5,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/pages/HomeScreen';
 import DetailsScreen from './src/pages/DetailsScreen';
 import BottomTabNavigator from './src/components/BottomTabNavigator';
-
-
+import { ThemeProvider } from 'styled-components/native';
+import { colors } from './src/utils/colors'; // importa tu archivo de tema
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <BottomTabNavigator />
-    </NavigationContainer>
-
-  );
+    return (
+        <ThemeProvider theme={{ colors }}>
+            <NavigationContainer>
+                <BottomTabNavigator />
+            </NavigationContainer>
+        </ThemeProvider>
+    );
 }
