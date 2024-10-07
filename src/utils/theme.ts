@@ -4,15 +4,19 @@ export const colors = {
     secondaryLight: '#ff5733', 
     backgroundLight: '#ffffff', 
     textLight: '#333333', // 
-    primaryDark: '#009BFF',
+    primaryDark: '#406680', // Yes
     primaryAltDark: '',
-    secondaryDark: '',
-    backgroundDark: '#242424',
-    backgroundAltDark: '#2D2D2D',
+    secondaryDark: '#408070', //Yes
+	secondaryAltDark: '',
+    backgroundDark: '#1A1A1A', //Yes
+    backgroundAltDark: '#2D2D2D',// Yes
     textDark: '#ffffff'
 }
 
 export const shapes = {
 	buttonRadius: 16,
-	cardRadius: 16
+	cardRadius: 16,
+	cardPadding: 20,
+	standardBackgroundWidth: '90%',
+	standardBackgroundMargin: '0 auto',
 }

@@ -5,7 +5,7 @@ import { colors, shapes } from "../utils/theme"
 
 const MyLineChart = () => {
     const data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
         datasets: [
             {
                 data: [20, 45, 28, 80, 99, 43],
@@ -18,13 +18,13 @@ const MyLineChart = () => {
 
             <LineChart
                 data={data}
-                width={400} // Dimensiones del gráfico
+                width={330} // Dimensiones del gráfico
                 height={220}
                 yAxisLabel="$"
                 chartConfig={{
                     backgroundColor: "#ffffff",
                     backgroundGradientFrom: colors.primaryDark,
-                    backgroundGradientTo: colors.primaryDark,
+                    backgroundGradientTo: colors.secondaryDark,
                     decimalPlaces: 2, // Opcional
                     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -34,7 +34,7 @@ const MyLineChart = () => {
                     propsForDots: {
                         r: '6',
                         strokeWidth: '2',
-                        stroke: '#4C4DDC',
+                        stroke: '#ffffff',
                     },
                 }}
                 style={{

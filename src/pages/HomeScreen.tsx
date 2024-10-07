@@ -1,65 +1,19 @@
 // HomeScreen.tsx
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
-import { ScrollView, Text, Button, Image, StyleSheet } from 'react-native';
+import { ScrollView, Text, Button, Image, StyleSheet, SafeAreaView } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import axios from 'axios';
-import Chart from "../components/Chart"
-import { colors } from "../utils/theme"
-const Container = styled.View`
+import LineChart from "../components/LineChart"
+import PieChart from "../components/PieChart"
+import { colors, shapes } from "../utils/theme"
+const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.backgroundDark}; /* Fondo  */
+  margin: 15% 0;
+  gap: 20px;
 `;
 
-const Header = styled.View`
-  background-color: #3c3d3d;
-  padding: 20px;
-  align-items: center;
-`;
-
-const BalanceContainer = styled.View`
-  margin: 20px 0;
-`;
-
-const BalanceText = styled.Text`
-  color: white;
-  font-size: 24px;
-`;
-
-const AddMoneyButton = styled(Button)`
-  background-color: #ffbc00;
-  margin-top: 10px;
-`;
-
-const TransactionsContainer = styled.View`
-  background-color: white;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 15px;
-`;
-
-const TransactionHeader = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-const TransactionItem = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom-width: 1px;
-  border-bottom-color: #ccc;
-`;
-
-const TransactionText = styled.Text`
-  font-size: 16px;
-`;
-
-const TransactionAmount = styled.Text<{ positive: boolean }>`
-  color: ${({ positive }) => (positive ? 'green' : 'red')};
-  font-size: 16px;
-`;
 
 const ButtonContainer = styled.View`
   flex-direction: row;
@@ -80,10 +34,8 @@ const OptionButtonText = styled.Text`
 `;
 
 const MyContainer = styled.View`
-  border-radius: 20px;
-  background-color: white;
-  width: 85%;
-  margin: 0 auto;
+  border-radius: 26px;
+  background-color: #2D2D2D;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,14 +43,33 @@ const MyContainer = styled.View`
 `;
 
 const MyText = styled.Text`
-  margin-top: 10px;
+  text-align: center;
+  color: white;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  
 `;
 
 const MyImage = styled.Image`
+  width: 90%;
+  margin: 0 auto;
   width: 250px;
   height: 200px;
 `;
 
+const StandardContainer = styled.View`
+    width: ${({ theme }) => theme.shapes.standardBackgroundWidth};
+    margin: ${({ theme }) => theme.shapes.standardBackgroundMargin};
+    background-color: ${({ theme }) => theme.colors.backgroundAltDark};
+    padding: ${({ theme }) => theme.shapes.cardPadding}px;
+    border-radius:  ${({ theme }) => theme.shapes.cardRadius}px;
+`
+const Title = styled.Text`
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+`
 const HomeScreen = () => {
     const translateX = useSharedValue(0); // Valor compartido
 
@@ -129,54 +100,26 @@ const HomeScreen = () => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Container>
-                <Header>
-                    <BalanceContainer>
-                        <BalanceText>Investment Forecast</BalanceText>
-                        <AddMoneyButton title="Add Money" onPress={() => { }} />
-                    </BalanceContainer>
-                </Header>
-                <TransactionsContainer>
-                    <TransactionHeader>Transaction</TransactionHeader>
-                    <TransactionItem>
-                        <TransactionText>Spending</TransactionText>
-                        <TransactionAmount positive={false}>-$500</TransactionAmount>
-                    </TransactionItem>
-                    <TransactionItem>
-                        <TransactionText>Income</TransactionText>
-                        <TransactionAmount positive={true}>$3000</TransactionAmount>
-                    </TransactionItem>
-                    <TransactionItem>
-                        <TransactionText>Bills</TransactionText>
-                        <TransactionAmount positive={false}>-$800</TransactionAmount>
-                    </TransactionItem>
-                    <TransactionItem>
-                        <TransactionText>Savings</TransactionText>
-                        <TransactionAmount positive={true}>$1000</TransactionAmount>
-                    </TransactionItem>
-                </TransactionsContainer>
+                <StandardContainer>
+                    <Title>Industry Analysis</Title>
+                    <PieChart />
+                </StandardContainer>
 
-                <Animated.View style={animatedStyle}>
-                    <MyContainer>
+                <StandardContainer>
+                    <Animated.View style={animatedStyle}>
                         <MyImage source={require('../../assets/investment.png')} />
                         <MyText>
                             Description: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro ipsa voluptatum, a sed, corrupti omnis error, blanditiis quas quo dolor debitis maiores libero inventore numquam rerum expedita praesentium. Similique, provident.
                         </MyText>
-                    </MyContainer>
-                </Animated.View>
+                    </Animated.View>
+                </StandardContainer>
 
-                <Chart />
+                <StandardContainer>
+                    <Title>Share Analysis</Title>
+                    <LineChart />
+                </StandardContainer>
 
-                <ButtonContainer>
-                    <OptionButton>
-                        <OptionButtonText>Send</OptionButtonText>
-                    </OptionButton>
-                    <OptionButton>
-                        <OptionButtonText>Request</OptionButtonText>
-                    </OptionButton>
-                    <OptionButton>
-                        <OptionButtonText>Bank</OptionButtonText>
-                    </OptionButton>
-                </ButtonContainer>
+
             </Container>
         </ScrollView>
     );
