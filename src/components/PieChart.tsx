@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { PieChart } from 'react-native-chart-kit';
 import { colors, shapes } from "../utils/theme";
 
 const MyPieChart = () => {
+    const [chartWidth, setChartWidth] = useState(0); // Estado para almacenar el ancho dinámico
     // Datos para el gráfico de pie
     const data = [
         {
@@ -44,27 +45,34 @@ const MyPieChart = () => {
     ];
 
     return (
-        <View>
-            <PieChart
-                data={data}
-                width={330} // Dimensiones del gráfico
-                height={220}
-                chartConfig={{
-                    backgroundColor: '#ffffff',
-                    backgroundGradientFrom: colors.primaryDark,
-                    backgroundGradientTo: colors.primaryDark,
-                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                }}
-                accessor={'population'}
-                backgroundColor={'transparent'}
-                paddingLeft={'15'}
-                absolute
-                style={{
-                    marginVertical: 8,
-                    borderRadius: shapes.cardRadius,
-                }}
-            />
+        <View onLayout={(event) => {
+            const { width } = event.nativeEvent.layout; // Capturar el ancho disponible del contenedor
+            setChartWidth(width); // Guardar el ancho en el estado
+        }}>
+            {chartWidth > 0 && (
+                <PieChart
+                    data={data}
+                    width={chartWidth} // Dimensiones del gráfico
+                    height={220}
+                    chartConfig={{
+                        backgroundColor: '#ffffff',
+                        backgroundGradientFrom: colors.primaryDark,
+                        backgroundGradientTo: colors.primaryDark,
+                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    }}
+                    accessor={'population'}
+                    backgroundColor={'transparent'}
+                    paddingLeft={'15'}
+                    absolute
+                    style={{
+                        marginVertical: 8,
+                        borderRadius: shapes.cardRadius,
+                    }}
+                />
+
+            )}
+
         </View>
     );
 };

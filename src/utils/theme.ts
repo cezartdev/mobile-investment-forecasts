@@ -13,10 +13,12 @@ export const colors = {
     textDark: '#ffffff'
 }
 
+const width = 90;
 export const shapes = {
 	buttonRadius: 16,
 	cardRadius: 16,
 	cardPadding: 20,
-	standardBackgroundWidth: '90%',
+	standardBackgroundWidth: width,
 	standardBackgroundMargin: '0 auto',
+    standardMarginHorizontal: (100-width)/2,
 }

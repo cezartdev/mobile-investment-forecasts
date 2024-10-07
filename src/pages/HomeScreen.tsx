@@ -59,7 +59,7 @@ const MyImage = styled.Image`
 `;
 
 const StandardContainer = styled.View`
-    width: ${({ theme }) => theme.shapes.standardBackgroundWidth};
+    width: ${({ theme }) => theme.shapes.standardBackgroundWidth}%;
     margin: ${({ theme }) => theme.shapes.standardBackgroundMargin};
     background-color: ${({ theme }) => theme.colors.backgroundAltDark};
     padding: ${({ theme }) => theme.shapes.cardPadding}px;

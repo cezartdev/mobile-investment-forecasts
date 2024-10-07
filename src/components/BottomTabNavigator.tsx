@@ -17,13 +17,13 @@ const BottomTabNavigator = () => {
                     tabBarStyle: {
                         backgroundColor: colors.backgroundAltDark,
                         borderRadius: shapes.buttonRadius,
-                        width: "90%",
                         alignSelf: 'center',
                         height: 60,
                         position: 'absolute',
                         bottom: 20,
                         borderWidth: 0,
                         borderTopWidth: 0,
+                        marginHorizontal: `${shapes.standardMarginHorizontal}%`
                     },
                     tabBarActiveTintColor: "white",
                     tabBarInactiveTintColor: colors.primaryDark,
